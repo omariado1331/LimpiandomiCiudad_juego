@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/teleferic.wav-b46e6092ce7d9771b393f115a6367ebf.sample"
+
+[deps]
+
+source_file="res://sonidos/teleferic.wav"
+dest_files=[ "res://.import/teleferic.wav-b46e6092ce7d9771b393f115a6367ebf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Personaje/frente2.png" type="Texture" id=1]
+[ext_resource path="res://Personaje/frente.png" type="Texture" id=2]
+[ext_resource path="res://Personaje/frente1.png" type="Texture" id=3]
+[ext_resource path="res://Personaje/Der1.png" type="Texture" id=4]
+[ext_resource path="res://Personaje/Der0.png" type="Texture" id=5]
+[ext_resource path="res://Personaje/Der2.png" type="Texture" id=6]
+[ext_resource path="res://Personaje/Izq0.png" type="Texture" id=7]
+[ext_resource path="res://Personaje/Izq1.png" type="Texture" id=8]
+[ext_resource path="res://Personaje/Izq2.png" type="Texture" id=9]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=10]
+[ext_resource path="res://particulas/gotas.png" type="Texture" id=11]
+[ext_resource path="res://Bala.tscn" type="PackedScene" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Izquierda",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Derecha",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Frente",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21.1322, 49.9738 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 4000.0
+flag_disable_z = true
+gravity = Vector3( 50, 500, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 26.2761
+height = 60.7225
+
+[node name="KinematicBody2D" type="KinematicBody2D" groups=[
+"play",
+]]
+position = Vector2( 3593.24, -1024.2 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true
+}
+bala = ExtResource( 12 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -33.7315, 18.312 )
+scale = Vector2( 0.20011, 0.212475 )
+frames = SubResource( 1 )
+animation = "Frente"
+frame = 8
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -31.7116, 23.8437 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = -3215
+limit_bottom = 1695
+
+[node name="Particles2D" type="Particles2D" parent="Camera2D"]
+position = Vector2( 27, -294 )
+scale = Vector2( 0.2, 0.2 )
+amount = 1000
+lifetime = 8.0
+process_material = SubResource( 3 )
+texture = ExtResource( 11 )
+
+[node name="newPosBala" type="Position2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Invulnerable" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -33.0313, 20.906 )
+shape = SubResource( 4 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Invulnerable" to="." method="_on_Invulnerable_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

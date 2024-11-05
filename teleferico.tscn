@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://node2.gd" type="Script" id=1]
+[ext_resource path="res://Edificios/amarillo.png" type="Texture" id=2]
+[ext_resource path="res://sonidos/teleferic.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 53.5929, 49.8159 )
+
+[node name="node2" type="Node"]
+script = ExtResource( 1 )
+
+[node name="teleferico" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="teleferico"]
+position = Vector2( 4.35916, -26.6815 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleferico"]
+position = Vector2( 2.75183, 3.23947 )
+shape = SubResource( 1 )
+
+[node name="sonido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 1.0
+max_distance = 1000.0
+attenuation = 0.965939
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback_process_mode = 0
+playback/repeat = true
+
+[node name="desde" type="Position2D" parent="."]
+position = Vector2( 81.8167, 524.016 )
+
+[node name="hasta" type="Position2D" parent="."]
+position = Vector2( 919.464, 68.1806 )
+
+[node name="timesonid" type="Timer" parent="."]
+wait_time = 10.0
+[connection signal="timeout" from="timesonid" to="." method="_on_timesonid_timeout"]

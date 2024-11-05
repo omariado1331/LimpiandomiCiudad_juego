@@ -1,0 +1,121 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Menu principal.gd" type="Script" id=1]
+[ext_resource path="res://botones/saliendo.png" type="Texture" id=2]
+[ext_resource path="res://Font/2.png" type="Texture" id=3]
+[ext_resource path="res://Font/1.png" type="Texture" id=4]
+[ext_resource path="res://Font/1v.png" type="Texture" id=5]
+[ext_resource path="res://Font/2v.png" type="Texture" id=6]
+[ext_resource path="res://Font/4.png" type="Texture" id=7]
+[ext_resource path="res://Font/3.png" type="Texture" id=8]
+[ext_resource path="res://Font/5.png" type="Texture" id=9]
+[ext_resource path="res://Font/3v.png" type="Texture" id=10]
+[ext_resource path="res://Font/4v.png" type="Texture" id=11]
+[ext_resource path="res://Font/5v.png" type="Texture" id=12]
+[ext_resource path="res://Font/HARDLINERS Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://botones/Inic.png" type="Texture" id=14]
+[ext_resource path="res://Personaje/frente2.png" type="Texture" id=15]
+[ext_resource path="res://Personaje/frente.png" type="Texture" id=16]
+[ext_resource path="res://Personaje/frente1.png" type="Texture" id=17]
+[ext_resource path="res://sonidos/SonidoFondoJuego.wav" type="AudioStream" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+outline_size = 10
+outline_color = Color( 0.101961, 0.317647, 0.121569, 1 )
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+outline_size = 5
+outline_color = Color( 0.12549, 0.482353, 0.745098, 1 )
+font_data = ExtResource( 13 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[node name="Menu principal" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="titulo" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 19.4262
+margin_bottom = 127.426
+custom_fonts/font = SubResource( 1 )
+text = "Limpiando la Ciudad"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -52.0
+margin_top = 124.426
+margin_right = 51.0
+margin_bottom = 185.426
+custom_fonts/font = SubResource( 2 )
+text = "Recicla"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="HBoxContainer"]
+position = Vector2( -200.044, 81.9776 )
+scale = Vector2( 0.535129, 0.58158 )
+frames = SubResource( 3 )
+frame = 14
+playing = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 284.0
+
+[node name="nuevojuego" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+margin_right = 140.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+texture_normal = ExtResource( 14 )
+expand = true
+
+[node name="salir" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+margin_top = 144.0
+margin_right = 140.0
+margin_bottom = 284.0
+rect_min_size = Vector2( 140, 140 )
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = 1.0
+autoplay = true
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/nuevojuego" to="." method="_on_nuevojuego_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/salir" to="." method="_on_salir_pressed"]

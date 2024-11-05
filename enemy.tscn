@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Enemigo.gd" type="Script" id=1]
+[ext_resource path="res://Obstaculos/perro1.png" type="Texture" id=2]
+[ext_resource path="res://Obstaculos/perro2.png" type="Texture" id=3]
+[ext_resource path="res://Obstaculos/perro3.png" type="Texture" id=4]
+[ext_resource path="res://sonidos/Ladrido.wav" type="AudioStream" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 33.1375
+height = 56.0742
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 33.746
+height = 60.8496
+
+[node name="Enemigo" type="KinematicBody2D" groups=[
+"enemig",
+]]
+position = Vector2( 727.756, 358.974 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -2.21997, 0.815857 )
+scale = Vector2( 0.494733, 0.573872 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="tiempo" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ladrar" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="ladrido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = 2.0
+autoplay = true
+max_distance = 1000.0
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="tiempo" to="." method="_on_tiempo_timeout"]
+[connection signal="timeout" from="ladrar" to="." method="_on_ladrar_timeout"]

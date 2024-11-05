@@ -1,0 +1,287 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://pause.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interf.gd" type="Script" id=2]
+[ext_resource path="res://Escenario/perder.jpg" type="Texture" id=3]
+[ext_resource path="res://Font/Sharp Retro.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://particulas/Bolsa.png" type="Texture" id=6]
+[ext_resource path="res://particulas/plomo.jpg" type="Texture" id=7]
+[ext_resource path="res://botones/Opc.png" type="Texture" id=8]
+[ext_resource path="res://Escenario/ganaste.jpg" type="Texture" id=9]
+[ext_resource path="res://particulas/saludd.png" type="Texture" id=10]
+[ext_resource path="res://particulas/barra.png" type="Texture" id=11]
+[ext_resource path="res://particulas/corazon.png" type="Texture" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 3
+outline_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+outline_size = 6
+outline_color = Color( 0.215686, 0.439216, 0.145098, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+outline_size = 8
+outline_color = Color( 0.356863, 0.117647, 0.117647, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 70
+outline_size = 8
+outline_color = Color( 0.054902, 0.545098, 0.270588, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 60
+outline_size = 10
+outline_color = Color( 0.12549, 0.380392, 0.223529, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+outline_size = 3
+outline_color = Color( 0.858824, 0.156863, 0.156863, 1 )
+font_data = ExtResource( 4 )
+
+[node name="Interf" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="tiemp" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -37.5
+margin_right = 37.5
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 1 )
+text = "000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timemsj" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="fond" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -148.595
+margin_top = 12.0587
+margin_right = -19.5955
+margin_bottom = 58.0587
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="numbolsas" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -138.682
+margin_top = 15.2957
+margin_right = -98.6816
+margin_bottom = 48.2957
+custom_fonts/font = SubResource( 2 )
+text = "00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="imgbols" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -73.8242
+margin_top = 11.6635
+margin_right = -33.8242
+margin_bottom = 57.6635
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_top = 15.0
+margin_bottom = 83.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI"]
+
+[node name="vida" type="HBoxContainer" parent="UI"]
+margin_right = 1024.0
+margin_bottom = 68.0
+
+[node name="barra" type="HBoxContainer" parent="UI/vida"]
+margin_right = 380.0
+margin_bottom = 68.0
+
+[node name="contad" type="MarginContainer" parent="UI/vida/barra"]
+margin_right = 120.0
+margin_bottom = 68.0
+
+[node name="fondo" type="NinePatchRect" parent="UI/vida/barra/contad"]
+margin_right = 120.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 120, 60 )
+texture = ExtResource( 7 )
+
+[node name="titulo" type="TextureRect" parent="UI/vida/barra/contad/fondo"]
+margin_left = 7.0
+margin_top = 8.0
+margin_right = 47.0
+margin_bottom = 51.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="numero" type="Label" parent="UI/vida/barra/contad/fondo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -7.0
+custom_fonts/font = SubResource( 6 )
+text = "000"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="medidor" type="TextureProgress" parent="UI/vida/barra"]
+margin_left = 124.0
+margin_right = 380.0
+margin_bottom = 68.0
+value = 50.0
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 10 )
+
+[node name="contador" type="HBoxContainer" parent="UI/vida"]
+margin_left = 384.0
+margin_right = 384.0
+margin_bottom = 68.0
+
+[node name="pause" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
+visible = false
+
+[node name="opcion" type="TextureButton" parent="."]
+pause_mode = 2
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -91.3197
+margin_top = -84.3197
+margin_right = -14.3197
+margin_bottom = -14.3197
+texture_normal = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="perdida" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ganast" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="msjperdiste" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -249.0
+margin_top = -63.0
+margin_right = 249.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 3 )
+text = "PERDISTE¡"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continuar" type="Button" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -151.85
+margin_top = -151.451
+margin_right = 157.15
+margin_bottom = -87.4514
+custom_fonts/font = SubResource( 4 )
+text = "CONTINUAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="reinicio" type="Button" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.5
+margin_top = -65.0
+margin_right = 130.5
+custom_fonts/font = SubResource( 5 )
+text = "REINICIAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="condicion" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -167.228
+margin_top = 69.9815
+margin_right = 164.772
+margin_bottom = 150.981
+custom_fonts/font = SubResource( 7 )
+text = "Recoge las bolsas antes
+que el contador llegue a
+				300 "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="timemsj" to="." method="_on_timemsj_timeout"]
+[connection signal="pressed" from="opcion" to="." method="_on_opcion_pressed"]
+[connection signal="pressed" from="continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="reinicio" to="." method="_on_reinicio_pressed"]

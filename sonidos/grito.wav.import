@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/grito.wav-2abcd0c2742eb378e10dca9d4d122041.sample"
+
+[deps]
+
+source_file="res://sonidos/grito.wav"
+dest_files=[ "res://.import/grito.wav-2abcd0c2742eb378e10dca9d4d122041.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
